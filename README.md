@@ -159,7 +159,7 @@ Simulation:
 
 ________________________________________________________________________________________________________________________________________
 
-<h4>6. 4 to 2 Priority Encoder:</h4>
+<h4>4. 4 to 2 Priority Encoder:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -227,7 +227,7 @@ Simulation:
 ![Encoder](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/priority_enc_stimulation.png)
 ________________________________________________________________________________________________________________________________________
 
-<h4>7. 2 to 4 Decoder:</h4>
+<h4>5. 2 to 4 Decoder:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -276,7 +276,7 @@ Simulation:
 ![Decoder1](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/decoder_stimulation.png)
 ________________________________________________________________________________________________________________________________________
 
-<h4>8. Half Adder:</h4>
+<h4>6. Half Adder:</h4>
      
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -323,7 +323,7 @@ Simulation:
 ![Half adder ](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/half_adder_stimulation.jpeg)
 ________________________________________________________________________________________________________________________________________
 
-<h4>9. Half Subtractor:</h4>
+<h4>7. Half Subtractor:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -370,7 +370,7 @@ Simulation:
 ![half subtractor](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/half_adder_stimulation.jpeg)
 ________________________________________________________________________________________________________________________________________
    
-<h4>10. Full Adder:</h4>
+<h4>8. Full Adder:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -421,7 +421,7 @@ Simulation:
 ![Full adder](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/Full%20adder%20Stimulation.jpeg)
 _______________________________________________________________________________________________________________________________________
    
-<h4>11. Full Subtractor:</h4>
+<h4>9. Full Subtractor:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -472,7 +472,7 @@ Simulation:
 ![Full Subtractor](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/full_subtractor_stimulator.jpeg)
 ________________________________________________________________________________________________________________________________________
 
-<h4>12. Universal Adder / Subtractor with Overflow Check:</h4>
+<h4>10. Universal Adder / Subtractor with Overflow Check:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -533,13 +533,13 @@ endmodule
 </pre>
 
 Schematic:
-![WhatsApp Image 2025-11-18 at 23 01 01_68606018](https://github.com/user-attachments/assets/67e5fb1a-c9f5-4957-bf57-3e625fbfe480)
+![universal](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/universal%20adder%20schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-18 at 22 59 38_9d1d4967](https://github.com/user-attachments/assets/9814d178-a66b-4111-b4ab-2434a2fd91e4)
+![Universal](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/universal%20adder%20stimulation.jpeg)
 ________________________________________________________________________________________________________________________________________
 
-<h4>13. SR Latch:</h4>
+<h4>11. SR Latch:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -606,13 +606,13 @@ initial
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-19 at 00 04 35_c0ca73f1](https://github.com/user-attachments/assets/515060f1-6b55-4c91-93cb-909382a5c466)
+![SR latch](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/Sr%20latch%20Schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-19 at 00 03 12_cd90a7e0](https://github.com/user-attachments/assets/bded6930-4550-4849-95d1-8dbbaf1a8f2a)
+![SR latch](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/SR%20latch%20stimulation.jpeg)
 ________________________________________________________________________________________________________________________________________
 
-<h4>14. SR Flip Flop:</h4>
+<h4>12. SR Flip Flop:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -677,13 +677,13 @@ end
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-19 at 00 21 23_4f43b269](https://github.com/user-attachments/assets/b61a409f-5345-4e5f-bff3-0d41d3759b93)
+![SR FLIPFLOP](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/SR%20flipflop%20Schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-19 at 00 17 52_d6a66df5](https://github.com/user-attachments/assets/a1960adb-c7e1-4a45-8283-f31d47558fef)
+![Sr flipflop](https://github.com/user-attachments/assets/a1960adb-c7e1-4a45-8283-f31d47558fef)
 ____________________________________________________________________________________________________________________________________
 
-<h4>15. D Flip Flop:</h4>
+<h4>13. D Flip Flop:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -733,13 +733,13 @@ end
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-19 at 00 39 34_ba92f0e7](https://github.com/user-attachments/assets/af09957e-c29b-40af-bf60-23621372ae71)
+![D flipflop](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/D%20flipflop%20schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-19 at 00 36 21_f83bbb05](https://github.com/user-attachments/assets/6832f0ef-cce0-408d-97a0-e45b2acaee5c)
+![D flipflop](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/d%20flipflop%20stimulator.jpeg)
 ________________________________________________________________________________________________________________________________________________
 
-<h4>16. JK Flip Flop:</h4>
+<h4>14. JK Flip Flop:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -804,13 +804,13 @@ end
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-19 at 00 57 47_4d73369b](https://github.com/user-attachments/assets/99c44e88-a5ef-411a-b209-b73365106a37)
+![JK](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/Jk%20Flipflop%20Schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-19 at 00 56 39_072380e3](https://github.com/user-attachments/assets/24734caf-f3f6-474c-87c4-e0056747d387)
+![Jk](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/Jk%20flipflop%20Stimulator.jpeg)
 ________________________________________________________________________________________________________________________________________________
 
-<h4>17. T Flip Flop:</h4>
+<h4>15. T Flip Flop:</h4>
 
 <h5>Code:</h5>
 <h5>Design source file code:</h5>
@@ -866,8 +866,8 @@ end
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-19 at 01 22 29_13df9004](https://github.com/user-attachments/assets/90585adf-e0c3-4791-8d12-cd4f70157859)
+![T](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/t%20Flipflop%20Schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-19 at 01 16 17_85f0dc64](https://github.com/user-attachments/assets/99bb42ea-ccbb-4ebe-a7bb-adf147f89d14)
+![T](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/T%20flipflop%20stimulation.jpeg)
 ________________________________________________________________________________________________________________________________________________

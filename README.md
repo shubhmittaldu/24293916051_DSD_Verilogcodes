@@ -110,10 +110,10 @@ endmodule
 </pre>
 
 Schematic:
-![WhatsApp Image 2025-11-05 at 22 33 31_a9eef5c1](https://github.com/user-attachments/assets/3cf1bb2c-076f-439b-8af7-2e4ff7ecbb57)
+![Boolean](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/Boolean_expression_schematic.png)
   
 Simulation:
-![WhatsApp Image 2025-11-05 at 22 43 56_0d49f174](https://github.com/user-attachments/assets/3c0a1aba-53a2-4c84-ae47-1957a252c890)
+![Boolean](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/boolean_expression_stimulation.png)
 ________________________________________________________________________________________________________________________________________
 
 <h4>3. Mux 2x1:</h4>

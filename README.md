@@ -11,43 +11,40 @@ ________________________________________________________________________________
 <h5>Design source file code:</h5>
 
 <pre> `timescale 1ns / 1ps
-// Basic gates implementation:  AND, OR, NOT, NAND, NOR, XOR, XNOR
-module logic_gates(
-input a,b,
-output y0,y1,y2,y3,y4,y5,y6,y7
+module gates(
+    input a,b,
+    output _and , _not , _or , _xor, _xnor, _nand, _nor
     );
-// outputs:
-// y0: AND, y1: OR, y2: NOT of a, y3: NOT of b, y4: NAND, y5: NOR, y6: XOR, y7: XNOR
-assign y0= a & b;
-assign y1= a | b;
-assign y2= ~a;
-assign y3= ~b;
-assign y4= ~(a & b);
-assign y5= ~(a | b);
-assign y6= a ^ b;
-assign y7= ~(a ^ b);
+assign _and = a & b;
+assign _not = (~a);
+assign _or = a | b;
+assign _xor = a ^ b;
+assign _xnor = a ~^ b;
+assign _nor = ~(a | b);
+assign _nand = ~(a & b);
 endmodule
 </pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_logic_gates(
+module gates_test(
+
     );
 reg a,b;
-wire y0,y1,y2,y3,y4,y5,y6,y7;
-logic_gates uut(a,b,y0,y1,y2,y3,y4,y5,y6,y7);
+wire _and , _not , _or , _xor, _xnor, _nand, _nor;
+gates uut(a,b,_and , _not , _or , _xor, _xnor, _nand, _nor);
 initial begin
-a=0; 
+a=0;
 b=0;
-#10  //these values of a and b should run for 10ns
-a=0; 
+#10
+a=0;
 b=1;
 #10
-a=1; 
+a=1;
 b=0;
 #10
-a=1; 
+a=1;
 b=1;
 #10
 $finish;
@@ -68,42 +65,27 @@ ________________________________________________________________________________
 <h5>Design source file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-    module boolean_exp(
-    input  A, B, C, D,
-    output Y1, Y2, Y3, Y4, Y5
+    module boolean_expression(
+input a, b,
+    output y
     );
-  assign Y1 = (A ^ B) & (C | ~D);        // Y1= (A⊕B)⋅(C+D)
-  assign Y2 = ~((A & B) | (C & ~D));       // Y2= ((A⋅B)+(C⋅D'))'
-  assign Y3 = (A & B) | (B & C) | (A & C);        // Y3= (A⋅B)+(B⋅C)+(A⋅C)
-  assign Y4 = (A & (~B | C)) ^ (D & (B | ~C));      // Y4= [A⋅(B'+C)]⊕[D⋅(B+C')]
-  assign Y5 = ~((A | B) ^ (C & ~D));                // Y5= ((A+B)⊕(C⋅D'))'​  
+assign y = (a ^ b) & (a ~^ b) | (a & b);
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_boolean_exp(
+module boolean_expression_test(
+
     );
-reg A,B,C,D;
-wire Y1, Y2, Y3, Y4, Y5;
-boolean_exp uut(A,B,C,D,Y1, Y2, Y3, Y4, Y5);
+reg a,b;
+wire y;
+boolean_expression uut(a,b,y);
 initial begin
-    A=0; B=0; C=0; D=0; #10;
-    A=0; B=0; C=0; D=1; #10;
-    A=0; B=0; C=1; D=0; #10;
-    A=0; B=0; C=1; D=1; #10;
-    A=0; B=1; C=0; D=0; #10;
-    A=0; B=1; C=0; D=1; #10;
-    A=0; B=1; C=1; D=0; #10;
-    A=0; B=1; C=1; D=1; #10;
-    A=1; B=0; C=0; D=0; #10;
-    A=1; B=0; C=0; D=1; #10;
-    A=1; B=0; C=1; D=0; #10;
-    A=1; B=0; C=1; D=1; #10;
-    A=1; B=1; C=0; D=0; #10;
-    A=1; B=1; C=0; D=1; #10;
-    A=1; B=1; C=1; D=0; #10;
-    A=1; B=1; C=1; D=1; #10;
+a=0;b=0;#10
+a=0;b=1;#10
+a=1;b=0;#10
+a=1;b=1;#10
 $finish;
 end
 endmodule
@@ -122,32 +104,57 @@ ________________________________________________________________________________
 <h5>Design source file code:</h5>
   
 <pre>`timescale 1ns / 1ps
-module mux_2x1_gates(
-input I0,I1,S,
-output Y
+module mux_2x1(
+    input a,b,s,
+    output y
     );
-assign Y= ((~S) & I0) | (S & I1);
+assign y=((~s)&a) | (s&b);
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_mux_2x1_gates(
+module mux_test(
+
     );
-reg I0, I1, S;
-wire Y;
-mux_2x1 uut(I0, I1, S, Y);
+reg a,b,s;
+wire y;
+mux_2x1 uut(a,b,s,y);
 initial begin
-I0 = 0; I1 = 0; S = 0; #10;
-    I0 = 0; I1 = 1; S = 0; #10;
-    I0 = 1; I1 = 0; S = 0; #10;
-    I0 = 1; I1 = 1; S = 0; #10;
-    I0 = 0; I1 = 0; S = 1; #10;
-    I0 = 0; I1 = 1; S = 1; #10;
-    I0 = 1; I1 = 0; S = 1; #10;
-    I0 = 1; I1 = 1; S = 1; #10;
-    $finish;
-    end
+a=0;
+b=0;
+s=0;
+#10
+a=0;
+b=0;
+s=1;
+#10
+a=0;
+b=1;
+s=0;
+#10
+a=0;
+b=1;
+s=1;
+#10
+a=1;
+b=0;
+s=0;
+#10
+a=1;
+b=0;
+s=1;
+#10
+a=1;
+b=1;
+s=0;
+#10
+a=1;
+b=1;
+s=1;
+#10
+$finish;
+end
 endmodule
 </pre>
 
@@ -165,59 +172,36 @@ ________________________________________________________________________________
 <h5>Design source file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module priority_encoder_4to2_using_gates(
-input D0,D1,D2,D3,
-output A,B,V
+module priority_encoder(
+input a,b,c,d,
+output l,m,v
     );
-assign A= D2 | D3;
-assign B= (D1 & (~D2)) | D3;
-assign V= D0 | D1 | D2 | D3; 
+assign l=c | b;
+assign m=c | ((~b)&a);
+assign v=(a | b) | (c | d);
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_priority_encoder_4to2_using_gates(
+module priority_encoder_test(
+
     );
-reg D0,D1,D2,D3;
-wire A,B,V;
-priority_encoder_4to2_using_gates uut(D0,D1,D2,D3,A,B,V);
-initial 
-    begin
-    D0=0; D1=0;D2=0;D3=0;
-    #10
-    D0=1; D1=0;D2=0;D3=0;
-    #10
-    D0=0; D1=1;D2=0;D3=0;
-    #10
-    D0=0; D1=0;D2=1;D3=0;
-    #10
-    D0=0; D1=0;D2=0;D3=1;
-    #10
-    D0=1; D1=1;D2=0;D3=0;
-    #10
-    D0=1; D1=1;D2=1;D3=0;
-    #10
-    D0=1; D1=1;D2=1;D3=1;
-    #10
-    D0=1; D1=0;D2=1;D3=0;
-    #10    
-    D0=1; D1=0;D2=0;D3=1;
-    #10
-    D0=1; D1=0;D2=1;D3=1;
-    #10
-    D0=0; D1=0;D2=1;D3=1;
-    #10
-    D0=0; D1=1;D2=1;D3=1;
-    #10
-    D0=1; D1=1;D2=0;D3=1;
-    #10
-    D0=0; D1=1;D2=1;D3=0;
-    #10
-    D0=0; D1=1;D2=0;D3=1;
-    #10
-  $finish;
-  end
+reg a,b,c,d;
+wire l,m,v;
+priority_encoder uut(a,b,c,d,l,m,v);
+initial begin
+a=0;b=0;c=0;d=0; #10
+a=0;b=0;c=0;d=1; #10
+a=0;b=0;c=1;d=0; #10
+a=0;b=0;c=1;d=1; #10
+a=0;b=1;c=0;d=0; #10
+a=0;b=1;c=0;d=1; #10
+a=0;b=1;c=1;d=0; #10
+a=0;b=1;c=1;d=1; #10
+a=1;b=0;c=0;d=0; #10
+$finish;
+end
 endmodule</pre>
 
 Schematic:
@@ -233,40 +217,32 @@ ________________________________________________________________________________
 <h5>Design source file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module decoder_2to4_using_gates(
-input A,B,
-output D0,D1,D2,D3
+module decoder(
+input a,b,
+output l,m,n,o
     );
-assign D0= (~A) & (~B);
-assign D1= (~A) & (B);
-assign D2= (A) & (~B); 
-assign D3= A & B;
+assign l=(~a)&(~b);
+assign m=(~a)&b;
+assign n=a&(~b);
+assign o=a&b;
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_decoder_2to4_using_gates(
+module decoder_test(
+
     );
-reg A,B;
-wire D0,D1,D2,D3;
-decoder_2to4_using_gates uut(A,B,D0,D1,D2,D3);
-initial 
-    begin
-    A=0;  
-    B=0;
-    #10
-    A=0;  
-    B=1;
-    #10
-    A=1;  
-    B=0;
-    #10
-    A=1;  
-    B=1;
-    #10
-  $finish;
-  end
+reg a,b;
+wire l,m,n,o;
+decoder uut(a,b,l,m,n,o);
+initial begin
+a=0;b=0;#10
+a=0;b=1;#10
+a=0;b=1;#10
+a=1;b=1;#10
+$finish;
+end
 endmodule</pre>
 
 Schematic:
@@ -283,37 +259,29 @@ ________________________________________________________________________________
 
 <pre>`timescale 1ns / 1ps
 module half_adder(
-input A,B,
-output sum,carry
+    input a,b,
+    output sum,carry
     );
-assign sum= A^B;
-assign carry= A&B;
+assign sum=a^b;
+assign carry=a&b;
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_half_adder(
+module half_adder_test(
+
     );
-reg A,B;
+reg a,b;
 wire sum,carry;
-half_adder uut(A,B,sum,carry);
-initial 
-    begin
-    A=0;  
-    B=0;
-    #10
-    A=0;  
-    B=1;
-    #10
-    A=1;  
-    B=0;
-    #10
-    A=1;  
-    B=1;
-    #10
-  $finish;
-  end
+half_adder uut(a,b,sum,carry);
+initial begin
+a=0;b=0;#10
+a=0;b=1;#10
+a=1;b=0;#10
+a=1;b=1;#10
+$finish;
+end
 endmodule</pre>
 
 Schematic:
@@ -330,37 +298,29 @@ ________________________________________________________________________________
 
 <pre>`timescale 1ns / 1ps
 module half_subtractor(
-input A,B,
-output difference,borrow
+    input a,b,
+    output diff,borrow
     );
-assign difference= A^B;
-assign borrow= ((~A)&B);
+assign diff=a^b;
+assign borrow=((~a)&b);
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_half_subtractor(
+module half_subtractor_test(
+
     );
-reg A,B;
-wire difference, borrow;
-half_subtractor uut(A,B,difference, borrow);
-initial 
-    begin
-    A=0;  
-    B=0;
-    #10
-    A=0;  
-    B=1;
-    #10
-    A=1;  
-    B=0;
-    #10
-    A=1;  
-    B=1;
-    #10
-  $finish;
-  end
+reg a,b;
+wire diff,borrow;
+half_subtractor uut(a,b,diff,borrow);
+initial begin
+a=0;b=0;#10
+a=1;b=0;#10
+a=1;b=1;#10
+a=0;b=1;#10
+$finish;
+end
 endmodule</pre>
 
 Schematic:
@@ -377,41 +337,29 @@ ________________________________________________________________________________
 
 <pre>`timescale 1ns / 1ps
 module full_adder(
-input A,B,C,
+input a,b,c,
 output sum,carry
     );
-assign sum= ((A^B)^C);
-assign carry= (A&B) | ((A^B)&C);
+assign sum=((a^b)^c);
+assign carry=(a&b) | ((a^b)&c);
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_full_adder(
+module full_adder_test(
+
     );
-reg A,B,C;
+reg a,b,c;
 wire sum,carry;
-full_adder uut(A,B,C,sum,carry);
-initial 
-    begin
-    A=0;B=0;C=0;
-    #10
-    A=0;B=0;C=1;
-    #10
-    A=0;B=1;C=0;
-    #10
-    A=0;B=1;C=1;
-    #10
-    A=1;B=0;C=0;
-    #10
-    A=1;B=0;C=1;
-    #10
-    A=1;B=1;C=0;
-    #10
-    A=1;B=1;C=1;
-    #10
-  $finish;
-  end
+full_adder uut(a,b,c,sum,carry);
+initial begin
+a=0;b=0;c=0;#10
+a=0;b=0;c=1;#10
+a=0;b=1;c=1;#10
+a=1;b=1;c=1;#10
+$finish;
+end
 endmodule</pre>
 
 Schematic:
@@ -427,42 +375,32 @@ ________________________________________________________________________________
 <h5>Design source file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module full_subtractor(
-input A,B,C,
-output difference,borrow
+module full_sub(
+input a,b,bin,
+output dif,bout
     );
-assign difference = A ^ B ^ C;
-assign borrow = (~A & B) | ((~(A ^ B)) & C);
+assign dif=(a^b)^bin;
+assign bout=(~a)&bin | a&bin | (~a)&b;
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
-module tb_full_subtractor(
+module full_sub_test(
+
     );
-reg A,B,C;
-wire difference,borrow;
-full_subtractor uut(A,B,C,difference,borrow);
-initial 
-    begin
-    A=0;B=0;C=0;
-    #10
-    A=0;B=0;C=1;
-    #10
-    A=0;B=1;C=0;
-    #10
-    A=0;B=1;C=1;
-    #10
-    A=1;B=0;C=0;
-    #10
-    A=1;B=0;C=1;
-    #10
-    A=1;B=1;C=0;
-    #10
-    A=1;B=1;C=1;
-    #10
-  $finish;
-  end
+reg a,b,bin;
+wire dif,bout;
+full_sub uut(a,b,bin,dif,bout);
+initial begin
+a=0;b=0;bin=0;#10
+a=0;b=0;bin=1;#10
+a=1;b=0;bin=0;#10
+a=1;b=0;bin=1;#10
+a=0;b=1;bin=0;#10
+a=0;b=1;bin=1;#10
+$finish;
+end
 endmodule</pre>
 
 Schematic:
@@ -481,23 +419,19 @@ ________________________________________________________________________________
 
 
 module universal_adder_subtractor(
-input A0, A1, A2, A3, B0, B1, B2, B3, M,
-output C4, S0, S1, S2, S3,V
+input a0, a1, a2, a3, b0, b1, b2, b3, m,
+output c4, s0, s1, s2, s3,v
     );
-    assign C0= M;
-    assign S0= A0 ^ (B0 ^ M) ^ C0;
-    assign C1= (A0 & (B0 ^ M)) | (C0 & (A0 ^ (B0 ^ M)));
-    
-    assign S1= A1 ^ (B1 ^ M) ^ C1;
-    assign C2= (A1 & (B1 ^ M)) | (C1 & (A1 ^ (B1 ^ M)));
-    
-    assign S2= A2 ^ (B2 ^ M) ^ C2;
-    assign C3= (A2 & (B2 ^ M)) | (C2 & (A2 ^ (B2 ^ M)));
-    
-    assign S3= A3 ^ (B3 ^ M) ^ C3;
-    assign C4= (A3 & (B3 ^ M)) | (C3 & (A3 ^ (B3 ^ M)));
-    
-    assign V= C3 ^ C4;
+assign c0= m;
+assign s0= a0 ^ (b0 ^ m) ^ c0;
+assign c1= (a0 & (b0 ^ m)) | (c0 & (a0 ^ (b0 ^ m)));
+assign s1= a1 ^ (b1 ^ m) ^ c1;
+assign c2= (a1 & (b1 ^ m)) | (c1 & (a1 ^ (b1 ^ m)));    
+assign s2= a2 ^ (b2 ^ m) ^ c2;
+assign c3= (a2 & (b2 ^ m)) | (c2 & (a2 ^ (b2 ^ m)));    
+assign s3= a3 ^ (b3 ^ m) ^ c3;
+assign c4= (a3 & (b3 ^ m)) | (c3 & (a3 ^ (b3 ^ m)));
+assign v= c3 ^ c4;
 endmodule
 </pre>
 
@@ -506,7 +440,7 @@ endmodule
 <pre>`timescale 1ns / 1ps
 
 
-module tb_universal_adder_subtractor(
+module universal_adder_subtractor_test(
 
     );
 reg A0, A1, A2, A3, B0, B1, B2, B3, M;
@@ -529,6 +463,7 @@ M=1;
 $finish;
 
 end
+
 endmodule
 </pre>
 
@@ -549,60 +484,31 @@ ________________________________________________________________________________
 
 
 module sr_latch(
-input S,R,
-output reg Q,Qbar
+input s,r,
+output q,q_
     );
-    
-
-always @(*) begin 
-if (S == 0 && R == 0) begin 
-$display("Invalid SR Inputs at Time %0t", $time); 
-Q = 1'bx; 
-Qbar = 1'bx; 
-end 
-else begin 
-Q <= ~(S & Qbar); 
-Qbar <= ~(R & Q); 
-end 
-end
-
-
+assign #1 q=~(q_&s);
+assign #1 q_=~(q&r);
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps
 
-module tb_sr_latch(
+module sr_latch_test(
 
     );
-    
-reg S,R;
-wire Q, Qbar;
-
-
-sr_latch uut(S,R,Q,Qbar);
-
-initial 
-    begin
-    S=0;  
-    R=1;
-    #10
-    S=1;  
-    R=1;
-    #10
-    S=1;  
-    R=0;
-    #10
-    S=1;  
-    R=1;
-    #10
-    S=0;  
-    R=0;
-    #10
-  $finish;
-  end
-
+reg s,r;
+wire q,q_;
+sr_latch uut(s,r,q,q_);
+initial begin
+s=0;r=1;#10
+s=1;r=1;#10
+s=1;r=0;#10
+s=1;r=1;#10
+s=0;r=0;#10
+$finish;
+end
 endmodule</pre>
 
 Schematic:
@@ -621,13 +527,11 @@ ________________________________________________________________________________
 
 //Positive edge triggered SR Flip Flop
 
-module sr_ff( 
+module sr_flip_flop(
 input  S, R, CLK, 
 output reg Q, 
-output Qbar 
-); 
-
-
+output Qbar
+ );
 assign Qbar = ~Q;
 
 always @(posedge CLK) begin
@@ -638,26 +542,24 @@ always @(posedge CLK) begin
      2'b11: Q <= 1'bx;   // Invalid condition 
 endcase
 end
-
-
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps 
 
-module tb_sr_ff( 
-); 
+module sr_flip_flop_test(
+
+    );
 reg S, R, CLK; 
 wire Q, Qbar; 
 
-sr_ff uut (S,R,CLK,Q,Qbar); 
+sr_flip_flop uut (S,R,CLK,Q,Qbar); 
 
 initial begin 
 CLK = 0; 
 forever #5 CLK = ~CLK; 
-end 
-
+end
 initial begin 
 S = 0; R = 0;   
 #12;            
@@ -672,8 +574,7 @@ S = 0; R = 0;
 S = 1; R = 1;   
 #10; 
 $finish; 
-end 
-
+end
 endmodule</pre>
 
 Schematic:
@@ -692,32 +593,28 @@ ________________________________________________________________________________
 
 //Positive edge triggered D Flip Flop
 
-module d_ff( 
+module d_flip_flop(
 input  D, CLK, 
 output reg Q, 
-output Qbar 
-); 
-
-
+output Qbar
+    );
 assign Qbar = ~Q;
-
 always @(posedge CLK) begin
      Q <= D;
 end
-
-
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps 
 
-module tb_d_ff( 
-); 
+module d_flip_flop_test(
+
+    );
 reg  D, CLK;  
 wire Q, Qbar; 
 
-d_ff uut (D,CLK,Q,Qbar); 
+d_flip_flop uut (D,CLK,Q,Qbar); 
 
 initial begin 
 CLK = 0; 
@@ -728,8 +625,7 @@ initial begin
 D = 0;  #10;            
 D = 1;  #10; 
 $finish; 
-end 
-
+end
 endmodule</pre>
 
 Schematic:
@@ -748,15 +644,12 @@ ________________________________________________________________________________
 
 //Positive edge triggered JK Flip Flop
 
-module jk_ff( 
+module jk_flip_flop(
 input  J, K, CLK, 
 output reg Q, 
 output Qbar 
-); 
-
-
+    );
 assign Qbar = ~Q;
-
 always @(posedge CLK) begin
      case ({J, K}) 
      2'b10: Q <= 1'b1;   // Set
@@ -765,26 +658,24 @@ always @(posedge CLK) begin
      2'b11: Q <= Qbar;   // Toggle 
 endcase
 end
-
-
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps 
 
-module tb_jk_ff( 
-); 
+module jk_flip_flop_test(
+
+    );
 reg J, K, CLK; 
 wire Q, Qbar; 
 
-jk_ff uut (J,K,CLK,Q,Qbar); 
+jk_flip_flop uut (J,K,CLK,Q,Qbar); 
 
 initial begin 
 CLK = 0; 
 forever #5 CLK = ~CLK; 
-end 
-
+end
 initial begin  
 J = 0; K = 0;   
 #12;           
@@ -799,8 +690,7 @@ J = 0; K = 0;
 J = 1; K = 1;   
 #10; 
 $finish; 
-end 
-
+end
 endmodule</pre>
 
 Schematic:
@@ -819,36 +709,33 @@ ________________________________________________________________________________
  
 //Positive edge triggered T Flip Flop
 
-module t_ff( 
-input  T, CLK, 
-output reg Q, 
-output Qbar 
-); 
+module t_flip_flop(
+input  t, clk, 
+output reg q, 
+output qbar 
+    );
+assign qbar = ~q;
+initial q=0;
 
-
-assign Qbar = ~Q;
-initial Q=0;
-
-always @(posedge CLK) begin
-   case ({T}) 
-     1'b1: Q <= Qbar;   // Toggle
-     1'b0: Q <= Q;   // Hold
+always @(posedge clk) begin
+   case ({t}) 
+     1'b1: q <= qbar;   // Toggle
+     1'b0: q <= q;   // Hold
 endcase
 end
-
-
 endmodule</pre>
 
 <h5>Test bench file code:</h5>
 
 <pre>`timescale 1ns / 1ps 
 
-module tb_t_ff( 
-); 
+module t_flip_flop_test(
+
+    );
 reg  T, CLK;  
 wire Q, Qbar; 
 
-t_ff uut (T,CLK,Q,Qbar); 
+t_flip_flop uut (T,CLK,Q,Qbar); 
 
 initial begin 
 CLK = 0; 
@@ -861,8 +748,7 @@ T = 1;  #10;
 T = 0;  #10;            
 T = 1;  #10;
 $finish; 
-end 
-
+end
 endmodule</pre>
 
 Schematic:

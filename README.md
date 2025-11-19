@@ -152,10 +152,10 @@ endmodule
 </pre>
 
 Schematic:
-![WhatsApp Image 2025-11-06 at 10 01 23_c89adc79](https://github.com/user-attachments/assets/5f41f4fb-b5bb-4d5f-8dce-9bed78fa7ea2)
+![mux s](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/mux2x1_schematic.png)
 
 Simulation:
-![WhatsApp Image 2025-11-06 at 10 03 30_af059585](https://github.com/user-attachments/assets/6c71bbe3-f640-4b2d-9b45-312eb1acedbf)
+![mux](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/mux2x1_stimulator.png)
 ________________________________________________________________________________________________________________________________________
 
 <h4>4. Mux 4x1:</h4>

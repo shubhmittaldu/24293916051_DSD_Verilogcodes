@@ -156,194 +156,7 @@ Schematic:
 
 Simulation:
 ![mux](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/mux2x1_stimulator.png)
-________________________________________________________________________________________________________________________________________
 
-<h4>4. Mux 4x1:</h4>
-
-<h5>Code:</h5>
-<h5>Design source file code:</h5>
-
-<pre>`timescale 1ns / 1ps
-module mux_4x1_gates(
-    input I0, I1, I2, I3,S0, S1,
-    output Y
-    );    
-    assign Y = (~S1 & ~S0 & I0) | 
-               (~S1 &  S0 & I1) | 
-               ( S1 & ~S0 & I2) | 
-               ( S1 &  S0 & I3);
-endmodule
-</pre>
-
-<h5>Test bench file code:</h5>
-
-<pre>`timescale 1ns / 1ps
-module tb_mux_4x1_gates();
-reg I0, I1, I2, I3, S0, S1;
-wire Y;
-mux_4x1_gates uut(I0, I1, I2, I3, S0, S1, Y);
-
-initial begin
-    // S1=0, S0=0
-    S1=0; S0=0;
-    I0=0; I1=0; I2=0; I3=0; #10;
-    I0=0; I1=0; I2=0; I3=1; #10;
-    I0=0; I1=0; I2=1; I3=0; #10;
-    I0=0; I1=0; I2=1; I3=1; #10;
-    I0=0; I1=1; I2=0; I3=0; #10;
-    I0=0; I1=1; I2=0; I3=1; #10;
-    I0=0; I1=1; I2=1; I3=0; #10;
-    I0=0; I1=1; I2=1; I3=1; #10;
-    I0=1; I1=0; I2=0; I3=0; #10;
-    I0=1; I1=0; I2=0; I3=1; #10;
-    I0=1; I1=0; I2=1; I3=0; #10;
-    I0=1; I1=0; I2=1; I3=1; #10;
-    I0=1; I1=1; I2=0; I3=0; #10;
-    I0=1; I1=1; I2=0; I3=1; #10;
-    I0=1; I1=1; I2=1; I3=0; #10;
-    I0=1; I1=1; I2=1; I3=1; #10;
-
-    // S1=0, S0=1
-    S1=0; S0=1;
-    I0=0; I1=0; I2=0; I3=0; #10;
-    I0=0; I1=0; I2=0; I3=1; #10;
-    I0=0; I1=0; I2=1; I3=0; #10;
-    I0=0; I1=0; I2=1; I3=1; #10;
-    I0=0; I1=1; I2=0; I3=0; #10;
-    I0=0; I1=1; I2=0; I3=1; #10;
-    I0=0; I1=1; I2=1; I3=0; #10;
-    I0=0; I1=1; I2=1; I3=1; #10;
-    I0=1; I1=0; I2=0; I3=0; #10;
-    I0=1; I1=0; I2=0; I3=1; #10;
-    I0=1; I1=0; I2=1; I3=0; #10;
-    I0=1; I1=0; I2=1; I3=1; #10;
-    I0=1; I1=1; I2=0; I3=0; #10;
-    I0=1; I1=1; I2=0; I3=1; #10;
-    I0=1; I1=1; I2=1; I3=0; #10;
-    I0=1; I1=1; I2=1; I3=1; #10;
-
-    // S1=1, S0=0
-    S1=1; S0=0;
-    I0=0; I1=0; I2=0; I3=0; #10;
-    I0=0; I1=0; I2=0; I3=1; #10;
-    I0=0; I1=0; I2=1; I3=0; #10;
-    I0=0; I1=0; I2=1; I3=1; #10;
-    I0=0; I1=1; I2=0; I3=0; #10;
-    I0=0; I1=1; I2=0; I3=1; #10;
-    I0=0; I1=1; I2=1; I3=0; #10;
-    I0=0; I1=1; I2=1; I3=1; #10;
-    I0=1; I1=0; I2=0; I3=0; #10;
-    I0=1; I1=0; I2=0; I3=1; #10;
-    I0=1; I1=0; I2=1; I3=0; #10;
-    I0=1; I1=0; I2=1; I3=1; #10;
-    I0=1; I1=1; I2=0; I3=0; #10;
-    I0=1; I1=1; I2=0; I3=1; #10;
-    I0=1; I1=1; I2=1; I3=0; #10;
-    I0=1; I1=1; I2=1; I3=1; #10;
-
-    // S1=1, S0=1
-    S1=1; S0=1;
-    I0=0; I1=0; I2=0; I3=0; #10;
-    I0=0; I1=0; I2=0; I3=1; #10;
-    I0=0; I1=0; I2=1; I3=0; #10;
-    I0=0; I1=0; I2=1; I3=1; #10;
-    I0=0; I1=1; I2=0; I3=0; #10;
-    I0=0; I1=1; I2=0; I3=1; #10;
-    I0=0; I1=1; I2=1; I3=0; #10;
-    I0=0; I1=1; I2=1; I3=1; #10;
-    I0=1; I1=0; I2=0; I3=0; #10;
-    I0=1; I1=0; I2=0; I3=1; #10;
-    I0=1; I1=0; I2=1; I3=0; #10;
-    I0=1; I1=0; I2=1; I3=1; #10;
-    I0=1; I1=1; I2=0; I3=0; #10;
-    I0=1; I1=1; I2=0; I3=1; #10;
-    I0=1; I1=1; I2=1; I3=0; #10;
-    I0=1; I1=1; I2=1; I3=1; #10;
-
-    $finish;
-end
-endmodule
-</pre>
-
-Schematic:
-<img width="894" height="482" alt="image" src="https://github.com/user-attachments/assets/b675e6eb-4cec-4e30-a3b4-bd3f9901d764" />
-
-Simulation:
-<img width="911" height="503" alt="image" src="https://github.com/user-attachments/assets/807eb2dd-c018-4635-a9d2-8fd767f197ad" />
-________________________________________________________________________________________________________________________________________
-
-<h4>5. Mux 8x1:</h4>
-
-<h5>Code:</h5>
-<h5>Design source file code:</h5>
-
-<pre>`timescale 1ns / 1ps
-module mux_8x1_gates(
-    input I0, I1, I2, I3, I4, I5, I6, I7, S0, S1, S2,
-    output Y
-    );
-  assign Y = (~S2 & ~S1 & ~S0 & I0) |
-           (~S2 & ~S1 &  S0 & I1) |
-           (~S2 &  S1 & ~S0 & I2) |
-           (~S2 &  S1 &  S0 & I3) |
-           ( S2 & ~S1 & ~S0 & I4) |
-           ( S2 & ~S1 &  S0 & I5) |
-           ( S2 &  S1 & ~S0 & I6) |
-           ( S2 &  S1 &  S0 & I7);
-endmodule
-</pre>
-
-<h5>Test bench file code:</h5>
-
-<pre>`timescale 1ns / 1ps
-module tb_mux_8x1_gates();
-reg I0, I1, I2, I3, I4, I5, I6, I7, S0, S1, S2;
-wire Y;
-mux_8x1_gates uut(I0, I1, I2, I3, I4, I5, I6, I7, S0, S1, S2, Y);
-initial begin
-
-// Test case 1: Select I0
-S2=0; S1=0; S0=0;
-I0=1; I1=0; I2=0; I3=0; I4=0; I5=0; I6=0; I7=0; #10;
-
-// Test case 2: Select I1
-S2=0; S1=0; S0=1;
-I0=0; I1=1; I2=0; I3=0; I4=0; I5=0; I6=0; I7=0; #10;
-
-// Test case 3: Select I2
-S2=0; S1=1; S0=0;
-I0=0; I1=0; I2=1; I3=0; I4=0; I5=0; I6=0; I7=0; #10;
-
-// Test case 4: Select I3
-S2=0; S1=1; S0=1;
-I0=0; I1=0; I2=0; I3=1; I4=0; I5=0; I6=0; I7=0; #10;
-
-// Test case 5: Select I4
-S2=1; S1=0; S0=0;
-I0=0; I1=0; I2=0; I3=0; I4=1; I5=0; I6=0; I7=0; #10;
-
-// Test case 6: Select I5
-S2=1; S1=0; S0=1;
-I0=0; I1=0; I2=0; I3=0; I4=0; I5=1; I6=0; I7=0; #10;
-
-// Test case 7: Select I6
-S2=1; S1=1; S0=0;
-I0=0; I1=0; I2=0; I3=0; I4=0; I5=0; I6=1; I7=0; #10;
-
-// Test case 8: Select I7
-S2=1; S1=1; S0=1;
-I0=0; I1=0; I2=0; I3=0; I4=0; I5=0; I6=0; I7=1; #10;
-
-    $finish;
-end
-endmodule
-</pre>
-
-Schematic:
-![WhatsApp Image 2025-11-17 at 13 37 41_03d2c530](https://github.com/user-attachments/assets/24994a77-3c55-48db-92bf-b0f5633efc9c)
-
-Simulation:
-![WhatsApp Image 2025-11-17 at 13 36 02_135c6ba0](https://github.com/user-attachments/assets/f2f6f236-5114-4dab-a095-0a3a22003703)
 ________________________________________________________________________________________________________________________________________
 
 <h4>6. 4 to 2 Priority Encoder:</h4>
@@ -408,10 +221,10 @@ initial
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-06 at 10 32 04_3bea99d6](https://github.com/user-attachments/assets/bfe12bcc-336a-4cae-95c2-e5d957ed1423)
+![encoder](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/priorityenc_schematic.png)
 
 Simulation:
-![WhatsApp Image 2025-11-06 at 10 33 02_c3ea71df](https://github.com/user-attachments/assets/d367824f-31d4-4844-baf6-7a3857b799db)
+![Encoder](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/priority_enc_stimulation.png)
 ________________________________________________________________________________________________________________________________________
 
 <h4>7. 2 to 4 Decoder:</h4>
@@ -457,10 +270,10 @@ initial
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-06 at 13 14 40_7676f9f0](https://github.com/user-attachments/assets/a4e7d1cb-b855-48d9-a5f8-cfb1397ca741)
+![Decoder](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/decoder_schematic.png)
 
 Simulation:
-![WhatsApp Image 2025-11-06 at 13 16 04_632e6189](https://github.com/user-attachments/assets/a8c3744c-1a92-49db-935d-36212981c79c)
+![Decoder1](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/decoder_stimulation.png)
 ________________________________________________________________________________________________________________________________________
 
 <h4>8. Half Adder:</h4>
@@ -504,10 +317,10 @@ initial
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-10 at 14 32 22_6b32000f](https://github.com/user-attachments/assets/e9ce97f3-6470-460b-9d4e-f38caee94a0b)
+![Half Adder](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/half_adder_schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-10 at 14 30 24_439d5fa5](https://github.com/user-attachments/assets/88b346d5-4860-4ae3-8b92-cd08adeb90ea)
+![Half adder ](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/half_adder_stimulation.jpeg)
 ________________________________________________________________________________________________________________________________________
 
 <h4>9. Half Subtractor:</h4>
@@ -551,10 +364,10 @@ initial
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-10 at 14 38 46_6bb5e5a9](https://github.com/user-attachments/assets/e4705026-119a-4901-a266-b120ba020071)
+![half subtractor](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/half_subtractor_schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-10 at 14 37 44_5ee9b7bd](https://github.com/user-attachments/assets/fd4d346f-8700-48af-80f0-54e6d4169260)
+![half subtractor](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/half_adder_stimulation.jpeg)
 ________________________________________________________________________________________________________________________________________
    
 <h4>10. Full Adder:</h4>
@@ -602,10 +415,10 @@ initial
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-10 at 14 49 01_a97ac7f9](https://github.com/user-attachments/assets/4e8241a1-a640-47d9-bc4e-fd4d56e3ce1a)
+![Full Adder ](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/Full%20adder%20schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-10 at 14 48 04_845cb2b1](https://github.com/user-attachments/assets/0c4ab133-1653-4379-a29f-508e01313c53)
+![Full adder](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/Full%20adder%20Stimulation.jpeg)
 _______________________________________________________________________________________________________________________________________
    
 <h4>11. Full Subtractor:</h4>
@@ -653,10 +466,10 @@ initial
 endmodule</pre>
 
 Schematic:
-![WhatsApp Image 2025-11-13 at 23 12 27_7036be44](https://github.com/user-attachments/assets/5de0ae88-c19d-4417-b748-aa83bb97c204)
+![Full subtractor](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/full_subtractor_schematic.jpeg)
 
 Simulation:
-![WhatsApp Image 2025-11-13 at 23 13 47_90bdeb01](https://github.com/user-attachments/assets/bcbb20b5-049a-4201-97e4-c6361ad7e9fd)
+![Full Subtractor](https://github.com/shubhmittaldu/24293916051_DSD_Verilogcodes/blob/main/full_subtractor_stimulator.jpeg)
 ________________________________________________________________________________________________________________________________________
 
 <h4>12. Universal Adder / Subtractor with Overflow Check:</h4>

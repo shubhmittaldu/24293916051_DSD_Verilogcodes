@@ -1,8 +1,8 @@
 <pre>Name - Shubh Mittal
 Roll no - 24293916051
-2nd year, sem-3, CSE-A</pre>
+2nd year, 3rd sem, CSE-A</pre>
 
-<pre>The following are the practicals performed in Verilog:</pre>
+<pre>Here are the codes of verilog:</pre>
 ________________________________________________________________________________________________________________________________________
 
 </h4>1. Logic Gates:</h4>
